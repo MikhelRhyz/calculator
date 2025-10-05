@@ -22,13 +22,91 @@ let operator = "";
 let numbers = [undefined, undefined];
 let isTotal = false;
 
-point.addEventListener("click", () => {
+document.addEventListener("keydown", (event) => {
+  let key = event.key;
+  if (key === ".") {
+    putPoint();
+  }
+
+  if (key === "0") {
+    putZero();
+  }
+
+  if (key === "1") {
+    putOne();
+  }
+
+  if (key === "2") {
+    putTwo();
+  }
+
+  if (key === "3") {
+    putThree();
+  }
+
+  if (key === "4") {
+    putFour();
+  }
+
+  if (key === "5") {
+    putFive();
+  }
+
+  if (key === "6") {
+    putSix();
+  }
+
+  if (key === "7") {
+    putSeven();
+  }
+
+  if (key === "8") {
+    putEight();
+  }
+
+  if (key === "9") {
+    putNine();
+  }
+
+  if (key === "Escape") {
+    clearDisplay();
+  }
+
+  if (key === "+") {
+    addNUmber();
+  }
+
+  if (key === "-") {
+    subtractNumbers();
+  }
+
+  if (key === "*") {
+    multiplyNumbers();
+  }
+
+  if (key === "/") {
+    divideNumbers();
+  }
+
+  if (key === "Enter") {
+    totalNumbers();
+  }
+
+   if (key === "%") {
+    percentage();
+  }
+
+});
+
+point.addEventListener("click", putPoint);
+
+function putPoint() {
   if (!calcDisplay.value.includes(".")) {
     calcDisplay.value += ".";
   }
-});
+}
 
-zero.addEventListener("click", () => {
+function putZero() {
   if (
     calcDisplay.value === "+" ||
     calcDisplay.value === "-" ||
@@ -40,9 +118,13 @@ zero.addEventListener("click", () => {
     isTotal = false;
   }
   calcDisplay.value += "0";
-});
+}
 
-one.addEventListener("click", () => {
+zero.addEventListener("click", putZero);
+
+one.addEventListener("click", putOne);
+
+function putOne() {
   if (
     calcDisplay.value === "+" ||
     calcDisplay.value === "-" ||
@@ -55,9 +137,11 @@ one.addEventListener("click", () => {
     isTotal = false;
   }
   calcDisplay.value += "1";
-});
+}
 
-two.addEventListener("click", () => {
+two.addEventListener("click", putTwo);
+
+function putTwo() {
   if (
     calcDisplay.value === "+" ||
     calcDisplay.value === "-" ||
@@ -70,9 +154,10 @@ two.addEventListener("click", () => {
     isTotal = false;
   }
   calcDisplay.value += "2";
-});
+}
+three.addEventListener("click", putThree);
 
-three.addEventListener("click", () => {
+function putThree() {
   if (
     calcDisplay.value === "+" ||
     calcDisplay.value === "-" ||
@@ -85,9 +170,11 @@ three.addEventListener("click", () => {
     isTotal = false;
   }
   calcDisplay.value += "3";
-});
+}
 
-four.addEventListener("click", () => {
+four.addEventListener("click", putFour);
+
+function putFour() {
   if (
     calcDisplay.value === "+" ||
     calcDisplay.value === "-" ||
@@ -100,9 +187,11 @@ four.addEventListener("click", () => {
     isTotal = false;
   }
   calcDisplay.value += "4";
-});
+}
 
-five.addEventListener("click", () => {
+five.addEventListener("click", putFive);
+
+function putFive() {
   if (
     calcDisplay.value === "+" ||
     calcDisplay.value === "-" ||
@@ -115,9 +204,11 @@ five.addEventListener("click", () => {
     isTotal = false;
   }
   calcDisplay.value += "5";
-});
+}
 
-six.addEventListener("click", () => {
+six.addEventListener("click", putSix);
+
+function putSix() {
   if (
     calcDisplay.value === "+" ||
     calcDisplay.value === "-" ||
@@ -130,9 +221,11 @@ six.addEventListener("click", () => {
     isTotal = false;
   }
   calcDisplay.value += "6";
-});
+}
 
-seven.addEventListener("click", () => {
+seven.addEventListener("click", putSeven);
+
+function putSeven() {
   if (
     calcDisplay.value === "+" ||
     calcDisplay.value === "-" ||
@@ -145,9 +238,11 @@ seven.addEventListener("click", () => {
     isTotal = false;
   }
   calcDisplay.value += "7";
-});
+}
 
-eight.addEventListener("click", () => {
+eight.addEventListener("click", putEight);
+
+function putEight() {
   if (
     calcDisplay.value === "+" ||
     calcDisplay.value === "-" ||
@@ -160,9 +255,11 @@ eight.addEventListener("click", () => {
     isTotal = false;
   }
   calcDisplay.value += "8";
-});
+}
 
-nine.addEventListener("click", () => {
+nine.addEventListener("click", putNine);
+
+function putNine() {
   if (
     calcDisplay.value === "+" ||
     calcDisplay.value === "-" ||
@@ -175,16 +272,20 @@ nine.addEventListener("click", () => {
     isTotal = false;
   }
   calcDisplay.value += "9";
-});
+}
 
-clearBtn.addEventListener("click", () => {
+clearBtn.addEventListener("click", clearDisplay);
+
+function clearDisplay() {
   calcDisplay.value = "";
   numbers[0] = undefined;
   numbers[1] = undefined;
   operator = undefined;
-});
+}
 
-plus.addEventListener("click", () => {
+plus.addEventListener("click", addNUmber);
+
+function addNUmber() {
   if (operator === "division") {
     let quo = numbers[0] / Number(calcDisplay.value);
     numbers[0] = quo;
@@ -209,9 +310,11 @@ plus.addEventListener("click", () => {
     calcDisplay.value = "+";
   }
   operator = "addition";
-});
+}
 
-minus.addEventListener("click", () => {
+minus.addEventListener("click", subtractNumbers);
+
+function subtractNumbers() {
   if (operator === "addition") {
     let sum = numbers[0] + Number(calcDisplay.value);
     numbers[0] = sum;
@@ -237,9 +340,11 @@ minus.addEventListener("click", () => {
   }
 
   operator = "subtraction";
-});
+}
 
-multiply.addEventListener("click", () => {
+multiply.addEventListener("click", multiplyNumbers);
+
+function multiplyNumbers() {
   if (operator === "addition") {
     let sum = numbers[0] + Number(calcDisplay.value);
     numbers[0] = sum;
@@ -264,9 +369,11 @@ multiply.addEventListener("click", () => {
     calcDisplay.value = "*";
   }
   operator = "multiplication";
-});
+}
 
-divide.addEventListener("click", () => {
+divide.addEventListener("click", divideNumbers);
+
+function divideNumbers() {
   if (operator === "addition") {
     let sum = numbers[0] + Number(calcDisplay.value);
     numbers[0] = sum;
@@ -291,9 +398,11 @@ divide.addEventListener("click", () => {
     calcDisplay.value = "/";
   }
   operator = "division";
-});
+}
 
-equal.addEventListener("click", () => {
+equal.addEventListener("click", totalNumbers);
+
+function totalNumbers() {
   numbers[1] = Number(calcDisplay.value);
   if (operator === "addition") {
     calcDisplay.value = numbers[0] + numbers[1];
@@ -321,18 +430,22 @@ equal.addEventListener("click", () => {
 
   operator = "";
   isTotal = true;
-});
+}
 
-plusMinus.addEventListener("click", () => {
+plusMinus.addEventListener("click", negateNumber);
+
+function negateNumber() {
   let result = Number(calcDisplay.value) * -1;
   calcDisplay.value = result;
-});
+}
 
-percent.addEventListener("click", () => {
+percent.addEventListener("click", percentage);
+
+function percentage() {
   if (numbers[0] === undefined || numbers[0] === 0) {
     calcDisplay.value = 0;
   } else {
     let point = calcDisplay.value / 100;
     calcDisplay.value = numbers[0] * point;
   }
-});
+}
