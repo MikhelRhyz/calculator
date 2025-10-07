@@ -5,6 +5,7 @@ let operator = "";
 let numbers = [undefined, undefined];
 let isTotal = false;
 let isFresh = false;
+calcDisplay.value = "0";
 document.addEventListener("keydown", (event) => {
   let key = event.key;
   if (key === ".") {
@@ -66,7 +67,16 @@ document.addEventListener("keydown", (event) => {
 point.addEventListener("click", putPoint);
 function putPoint() {
   if (!calcDisplay.value.includes(".")) {
+    if (
+      calcDisplay.value === "+" ||
+      calcDisplay.value === "-" ||
+      calcDisplay.value === "/" ||
+      calcDisplay.value === "*"
+    ) {
+      calcDisplay.value = "0";
+    }
     calcDisplay.value += ".";
+    isFresh = false;
   }
 }
 function putZero() {
@@ -270,14 +280,24 @@ function putNine() {
 }
 clearBtn.addEventListener("click", clearDisplay);
 function clearDisplay() {
-  calcDisplay.value = "";
+  calcDisplay.value = "0";
   numbers[0] = undefined;
   numbers[1] = undefined;
   operator = undefined;
 }
 plus.addEventListener("click", addNumber);
 function addNumber() {
-  if (operator === "division") {
+  if (
+    calcDisplay.value === "+" ||
+    calcDisplay.value === "-" ||
+    calcDisplay.value === "/" ||
+    calcDisplay.value === "*"
+  ) {
+    operator = "";
+    if (numbers[0] != undefined) {
+      calcDisplay.value = "-";
+    }
+  } else if (operator === "division") {
     let quo = numbers[0] / Number(calcDisplay.value);
     numbers[0] = quo;
     calcDisplay.value = "+";
@@ -303,7 +323,17 @@ function addNumber() {
 }
 minus.addEventListener("click", subtractNumbers);
 function subtractNumbers() {
-  if (operator === "addition") {
+  if (
+    calcDisplay.value === "+" ||
+    calcDisplay.value === "-" ||
+    calcDisplay.value === "/" ||
+    calcDisplay.value === "*"
+  ) {
+    operator = "";
+    if (numbers[0] != undefined) {
+      calcDisplay.value = "-";
+    }
+  } else if (operator === "addition") {
     let sum = numbers[0] + Number(calcDisplay.value);
     numbers[0] = sum;
     calcDisplay.value = "-";
@@ -329,7 +359,17 @@ function subtractNumbers() {
 }
 multiply.addEventListener("click", multiplyNumbers);
 function multiplyNumbers() {
-  if (operator === "addition") {
+  if (
+    calcDisplay.value === "+" ||
+    calcDisplay.value === "-" ||
+    calcDisplay.value === "/" ||
+    calcDisplay.value === "*"
+  ) {
+    operator = "";
+    if (numbers[0] != undefined) {
+      calcDisplay.value = "-";
+    }
+  } else if (operator === "addition") {
     let sum = numbers[0] + Number(calcDisplay.value);
     numbers[0] = sum;
     calcDisplay.value = "*";
@@ -355,7 +395,17 @@ function multiplyNumbers() {
 }
 divide.addEventListener("click", divideNumbers);
 function divideNumbers() {
-  if (operator === "addition") {
+  if (
+    calcDisplay.value === "+" ||
+    calcDisplay.value === "-" ||
+    calcDisplay.value === "/" ||
+    calcDisplay.value === "*"
+  ) {
+    operator = "";
+    if (numbers[0] != undefined) {
+      calcDisplay.value = "-";
+    }
+  } else if (operator === "addition") {
     let sum = numbers[0] + Number(calcDisplay.value);
     numbers[0] = sum;
     calcDisplay.value = "/";
@@ -392,6 +442,14 @@ function totalNumbers() {
   } else if (operator === "multiplication") {
     result = numbers[0] * numbers[1];
   } else if (operator === "division") {
+    if (numbers[1] === 0) {
+      calcDisplay.value = "Cannot divide by 0";
+      operator = "";
+      numbers[0] = undefined;
+      numbers[1] = undefined;
+      isFresh = true;
+      return;
+    }
     result = numbers[0] / numbers[1];
   } else {
     // no operator → just return current value
