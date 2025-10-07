@@ -405,8 +405,7 @@ function totalNumbers() {
 
   calcDisplay.value = result;
 
-  // keep result as first number, reset second + operator
-  numbers[0] = result;
+  numbers[0] = undefined;
   numbers[1] = undefined;
   operator = "";
   isTotal = true;
