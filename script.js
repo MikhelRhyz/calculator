@@ -287,6 +287,9 @@ function clearDisplay() {
 }
 plus.addEventListener("click", addNumber);
 function addNumber() {
+  if (isTotal) {
+    isTotal = false;
+  }
   if (
     calcDisplay.value === "+" ||
     calcDisplay.value === "-" ||
@@ -323,6 +326,9 @@ function addNumber() {
 }
 minus.addEventListener("click", subtractNumbers);
 function subtractNumbers() {
+  if (isTotal) {
+    isTotal = false;
+  }
   if (
     calcDisplay.value === "+" ||
     calcDisplay.value === "-" ||
@@ -359,6 +365,9 @@ function subtractNumbers() {
 }
 multiply.addEventListener("click", multiplyNumbers);
 function multiplyNumbers() {
+  if (isTotal) {
+    isTotal = false;
+  }
   if (
     calcDisplay.value === "+" ||
     calcDisplay.value === "-" ||
@@ -395,6 +404,9 @@ function multiplyNumbers() {
 }
 divide.addEventListener("click", divideNumbers);
 function divideNumbers() {
+  if (isTotal) {
+    isTotal = false;
+  }
   if (
     calcDisplay.value === "+" ||
     calcDisplay.value === "-" ||
