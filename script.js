@@ -298,7 +298,7 @@ function addNumber() {
   ) {
     operator = "";
     if (numbers[0] != undefined) {
-      calcDisplay.value = "-";
+      calcDisplay.value = "+";
     }
   } else if (operator === "division") {
     let quo = numbers[0] / Number(calcDisplay.value);
@@ -376,7 +376,7 @@ function multiplyNumbers() {
   ) {
     operator = "";
     if (numbers[0] != undefined) {
-      calcDisplay.value = "-";
+      calcDisplay.value = "*";
     }
   } else if (operator === "addition") {
     let sum = numbers[0] + Number(calcDisplay.value);
@@ -415,7 +415,7 @@ function divideNumbers() {
   ) {
     operator = "";
     if (numbers[0] != undefined) {
-      calcDisplay.value = "-";
+      calcDisplay.value = "/";
     }
   } else if (operator === "addition") {
     let sum = numbers[0] + Number(calcDisplay.value);
